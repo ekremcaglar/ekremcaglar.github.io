@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Ekrem Çağlar — Simülasyonlar, oyunlar ve deneyler.">
+  <title>Ekrem Çağlar — Projeler</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f3efe6;
+      --bg-accent: #e8e1d2;
+      --surface: #fffcf6;
+      --text: #1b1914;
+      --muted: #5e594e;
+      --border: #d9d1c0;
+      --accent: #9a4a12;
+      --accent-soft: rgba(154, 74, 18, 0.12);
+      --link: #1d4f8c;
+      --shadow: 0 1px 2px rgba(27, 25, 20, 0.04), 0 8px 24px rgba(27, 25, 20, 0.06);
+      --radius: 16px;
+      --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+      --sans: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+      --ui: "Segoe UI", system-ui, -apple-system, "Noto Sans", sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12110e;
+        --bg-accent: #1c1a15;
+        --surface: #1b1a16;
+        --text: #f2eee4;
+        --muted: #b0a899;
+        --border: #343229;
+        --accent: #e8a54b;
+        --accent-soft: rgba(232, 165, 75, 0.14);
+        --link: #9ec0ec;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px rgba(0, 0, 0, 0.28);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      font-family: var(--ui);
+      line-height: 1.5;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 100% -10%, var(--bg-accent), transparent 60%),
+        radial-gradient(ellipse 60% 40% at -10% 0%, var(--bg-accent), transparent 55%);
+    }
+
+    a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { text-decoration: none; }
+
+    .wrap {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 64px;
+    }
+
+    header {
+      display: grid;
+      gap: 18px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    h1 {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: clamp(2rem, 5vw, 3.15rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 36em;
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .social a:hover { border-color: var(--accent); }
+
+    .social svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    label[for="q"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .search {
+      flex: 1 1 260px;
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 11px 14px 11px 40px;
+      font: inherit;
+      outline: none;
+    }
+
+    .search input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .search svg {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      stroke: var(--muted);
+      fill: none;
+      pointer-events: none;
+    }
+
+    .status {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .status[data-kind="warn"] { color: var(--accent); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    article.card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 20px 16px;
+      box-shadow: var(--shadow);
+      min-height: 220px;
+    }
+
+    .card h2 {
+      font-family: var(--sans);
+      font-size: 1.28rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .card h2 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card h2 a:hover { color: var(--accent); }
+
+    .card p.desc {
+      margin: 0;
+      color: var(--muted);
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--text);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: baseline;
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    .btn:hover { opacity: 0.88; color: var(--bg); }
+
+    .repo-link {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 48px 12px;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+
+    footer {
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 28px 0 48px; }
+      header { gap: 14px; padding-bottom: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="kicker">GitHub Pages</p>
+      <h1>Ekrem Çağlar — Projeler</h1>
+      <p class="subtitle">Simülasyonlar, oyunlar ve deneyler</p>
+      <nav class="social" aria-label="Profiller">
+        <a href="https://github.com/ekremcaglar" rel="me">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 4.2c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a href="https://tr.linkedin.com/in/ekremcaglar" rel="me">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M14.8 0H1.2C.5 0 0 .5 0 1.2v13.6C0 15.5.5 16 1.2 16h13.6c.7 0 1.2-.5 1.2-1.2V1.2C16 .5 15.5 0 14.8 0zM4.7 13.6H2.4V6h2.3v7.6zM3.6 4.9c-.7 0-1.3-.6-1.3-1.3 0-.7.6-1.3 1.3-1.3.7 0 1.3.6 1.3 1.3 0 .7-.6 1.3-1.3 1.3zM13.6 13.6h-2.3V9.9c0-.9 0-2-1.2-2s-1.4 1-1.4 2v3.7H6.4V6h2.2v1c.3-.6 1.1-1.2 2.2-1.2 2.4 0 2.8 1.6 2.8 3.6v4.2z"/></svg>
+          LinkedIn
+        </a>
+      </nav>
+    </header>
+
+    <div class="toolbar">
+      <div class="search">
+        <label for="q">Projelerde ara</label>
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Projelerde ara…" autocomplete="off">
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+    </div>
+
+    <main id="grid" class="grid"></main>
+    <p id="empty" class="empty" hidden>Aramayla eşleşen proje yok.</p>
+
+    <footer>
+      Liste, her açılışta GitHub API üzerinden otomatik güncellenir. Yeni bir GitHub Pages projesi eklendiğinde burada görünür.
+    </footer>
+  </div>
+
+  <script>
+    const USER = "ekremcaglar";
+    const SITE_REPO = "ekremcaglar.github.io";
+    const API = "https://api.github.com/users/" + USER + "/repos?per_page=100&sort=updated";
+    const CACHE_KEY = "ekremcaglar-pages-index-v1";
+    const FALLBACK = [
+      {
+        name: "klasik-motor-oyunu",
+        description: "Klasik Motor — Tepe Yarışı tarayıcı oyunu",
+        language: "HTML",
+        updated_at: "2026-11-12T11:56:40Z",
+        html_url: "https://github.com/ekremcaglar/klasik-motor-oyunu",
+        has_pages: true,
+        fork: false
+      },
+      {
+        name: "yakit-pompasi-simulasyonu",
+        description: "Galip için yakıt pompası simülasyonu (eğitim amaçlı; fiyatlar örnek değerdir)",
+        language: "HTML",
+        updated_at: "2026-11-12T11:08:23Z",
+        html_url: "https://github.com/ekremcaglar/yakit-pompasi-simulasyonu",
+        has_pages: true,
+        fork: false
+      },
+      {
+        name: "f16-yakit-pompasi-3d",
+        description: "F-16 yakıt boost pompası — 3B etkileşimli teardown ve eğitim simülasyonu (three.js)",
+        language: "JavaScript",
+        updated_at: "2026-11-12T10:48:55Z",
+        html_url: "https://github.com/ekremcaglar/f16-yakit-pompasi-3d",
+        has_pages: true,
+        fork: false
+      }
+    ];
+
+    const SPECIALS = {
+      f16: "F-16",
+      "f-16": "F-16",
+      "3d": "3D",
+      "3b": "3B",
+      ai: "AI",
+      api: "API",
+      html: "HTML",
+      css: "CSS",
+      js: "JS",
+      ui: "UI",
+      ux: "UX"
+    };
+
+    function prettify(name) {
+      return String(name || "").split(/[-_]+/).filter(Boolean).map(function (part) {
+        var key = part.toLowerCase();
+        if (SPECIALS[key]) return SPECIALS[key];
+        return part.charAt(0).toLocaleUpperCase("tr-TR") + part.slice(1);
+      }).join(" ");
+    }
+
+    function formatDate(iso) {
+      if (!iso) return "";
+      try {
+        return new Date(iso).toLocaleDateString("tr-TR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          timeZone: "Europe/Istanbul"
+        });
+      } catch (e) {
+        return iso.slice(0, 10);
+      }
+    }
+
+    function isPagesProject(repo) {
+      return !!(repo && repo.has_pages && !repo.fork && repo.name !== SITE_REPO);
+    }
+
+    function normalize(repo) {
+      return {
+        name: repo.name,
+        description: repo.description || "",
+        language: repo.language || "",
+        updated_at: repo.updated_at || "",
+        html_url: repo.html_url || ("https://github.com/" + USER + "/" + repo.name)
+      };
+    }
+
+    function liveUrl(name) {
+      return "https://" + USER + ".github.io/" + name + "/";
+    }
+
+    function setStatus(text, kind) {
+      var el = document.getElementById("status");
+      el.textContent = text;
+      el.dataset.kind = kind || "";
+    }
+
+    function render(repos) {
+      var q = (document.getElementById("q").value || "").trim().toLocaleLowerCase("tr-TR");
+      var list = repos.slice().sort(function (a, b) {
+        return String(b.updated_at).localeCompare(String(a.updated_at));
+      }).filter(function (repo) {
+        if (!q) return true;
+        var hay = [repo.name, prettify(repo.name), repo.description, repo.language]
+          .join(" ").toLocaleLowerCase("tr-TR");
+        return hay.indexOf(q) !== -1;
+      });
+
+      var grid = document.getElementById("grid");
+      var empty = document.getElementById("empty");
+      grid.innerHTML = "";
+
+      list.forEach(function (repo) {
+        var article = document.createElement("article");
+        article.className = "card";
+
+        var title = document.createElement("h2");
+        var titleLink = document.createElement("a");
+        titleLink.href = liveUrl(repo.name);
+        titleLink.textContent = prettify(repo.name);
+        title.appendChild(titleLink);
+
+        var desc = document.createElement("p");
+        desc.className = "desc";
+        desc.textContent = repo.description || "Açıklama eklenmemiş.";
+
+        var meta = document.createElement("div");
+        meta.className = "meta";
+        if (repo.language) {
+          var lang = document.createElement("span");
+          lang.textContent = repo.language;
+          meta.appendChild(lang);
+        }
+        if (repo.updated_at) {
+          var date = document.createElement("span");
+          date.textContent = formatDate(repo.updated_at);
+          meta.appendChild(date);
+        }
+
+        var actions = document.createElement("div");
+        actions.className = "actions";
+
+        var open = document.createElement("a");
+        open.className = "btn";
+        open.href = liveUrl(repo.name);
+        open.textContent = "Canlı sayfa";
+
+        var source = document.createElement("a");
+        source.className = "repo-link";
+        source.href = repo.html_url;
+        source.textContent = "Kaynak kod";
+
+        actions.appendChild(open);
+        actions.appendChild(source);
+
+        article.appendChild(title);
+        article.appendChild(desc);
+        article.appendChild(meta);
+        article.appendChild(actions);
+        grid.appendChild(article);
+      });
+
+      empty.hidden = list.length > 0;
+    }
+
+    var current = FALLBACK.slice();
+    document.getElementById("q").addEventListener("input", function () { render(current); });
+
+    function useList(repos, message, kind) {
+      current = repos;
+      setStatus(message, kind);
+      render(current);
+    }
+
+    function readCache() {
+      try {
+        var raw = localStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        var parsed = JSON.parse(raw);
+        if (!parsed || !Array.isArray(parsed.repos)) return null;
+        return parsed;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function writeCache(repos) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          savedAt: new Date().toISOString(),
+          repos: repos
+        }));
+      } catch (e) {}
+    }
+
+    async function load() {
+      var cache = readCache();
+      if (cache && cache.repos.length) {
+        useList(cache.repos, "Kayıtlı liste gösteriliyor…", "");
+      } else {
+        useList(FALLBACK, "Yedek liste gösteriliyor…", "");
+      }
+
+      try {
+        var res = await fetch(API, {
+          headers: { Accept: "application/vnd.github+json" }
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        var data = await res.json();
+        if (!Array.isArray(data)) throw new Error("Beklenmeyen yanıt");
+        var repos = data.filter(isPagesProject).map(normalize);
+        writeCache(repos);
+        var count = repos.length;
+        useList(repos, count + " proje · canlı liste", "");
+      } catch (err) {
+        if (cache && cache.repos.length) {
+          var when = cache.savedAt ? formatDate(cache.savedAt) : "";
+          useList(cache.repos, "API yanıt vermedi; kayıtlı liste" + (when ? " (" + when + ")" : ""), "warn");
+        } else {
+          useList(FALLBACK, "API yanıt vermedi; yedek liste gösteriliyor", "warn");
+        }
+      }
+    }
+
+    load();
+  </script>
+</body>
+</html>

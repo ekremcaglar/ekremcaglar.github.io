@@ -360,6 +360,18 @@
       }
     ];
 
+    // Bu sitenin içinde (alt klasörde) yayınlanan sayfalar; her yüklemede listeye eklenir.
+    const EXTRA = [
+      {
+        name: "folio",
+        description: "Folio — çevrimdışı LLM sohbeti ve Markdown'dan Word'e dönüştürücü",
+        language: "HTML",
+        updated_at: "2026-11-12T14:40:00Z",
+        html_url: "https://github.com/ekremcaglar/ekremcaglar.github.io/tree/main/folio",
+        url: "https://ekremcaglar.github.io/folio/"
+      }
+    ];
+
     const SPECIALS = {
       f16: "F-16",
       "f-16": "F-16",
@@ -410,8 +422,9 @@
       };
     }
 
-    function liveUrl(name) {
-      return "https://" + USER + ".github.io/" + name + "/";
+    function liveUrl(repo) {
+      if (repo.url) return repo.url;
+      return "https://" + USER + ".github.io/" + repo.name + "/";
     }
 
     function setStatus(text, kind) {
@@ -441,7 +454,7 @@
 
         var title = document.createElement("h2");
         var titleLink = document.createElement("a");
-        titleLink.href = liveUrl(repo.name);
+        titleLink.href = liveUrl(repo);
         titleLink.textContent = prettify(repo.name);
         title.appendChild(titleLink);
 
@@ -467,7 +480,7 @@
 
         var open = document.createElement("a");
         open.className = "btn";
-        open.href = liveUrl(repo.name);
+        open.href = liveUrl(repo);
         open.textContent = "Canlı sayfa";
 
         var source = document.createElement("a");
@@ -488,11 +501,13 @@
       empty.hidden = list.length > 0;
     }
 
-    var current = FALLBACK.slice();
+    var current = FALLBACK.concat(EXTRA);
     document.getElementById("q").addEventListener("input", function () { render(current); });
 
     function useList(repos, message, kind) {
-      current = repos;
+      var names = {};
+      repos.forEach(function (r) { names[r.name] = 1; });
+      current = repos.concat(EXTRA.filter(function (r) { return !names[r.name]; }));
       setStatus(message, kind);
       render(current);
     }
@@ -535,7 +550,7 @@
         if (!Array.isArray(data)) throw new Error("Beklenmeyen yanıt");
         var repos = data.filter(isPagesProject).map(normalize);
         writeCache(repos);
-        var count = repos.length;
+        var count = repos.length + EXTRA.length;
         useList(repos, count + " proje · canlı liste", "");
       } catch (err) {
         if (cache && cache.repos.length) {

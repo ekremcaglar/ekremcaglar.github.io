@@ -1,0 +1,287 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Sans}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{fancyhdr}
+
+\definecolor{accentblue}{RGB}{24, 78, 135}
+\definecolor{mutedgray}{RGB}{95, 105, 115}
+\definecolor{codebg}{RGB}{246, 248, 250}
+\definecolor{rulegray}{RGB}{205, 212, 218}
+
+\usepackage[colorlinks=true, linkcolor=accentblue, citecolor=accentblue, urlcolor=accentblue]{hyperref}
+
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{mutedgray}Comprehensive Sample Document}
+\fancyhead[R]{\small\color{mutedgray}\leftmark}
+\fancyfoot[C]{\small\color{mutedgray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{accentblue}\bfseries,
+  commentstyle=\color{mutedgray}\itshape,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{rulegray},
+  breaklines=true,
+  numbers=left,
+  numberstyle=\tiny\color{mutedgray},
+  xleftmargin=1.5em,
+  framexleftmargin=1.2em,
+  aboveskip=1em,
+  belowskip=1em
+}
+
+\title{\textbf{A Comprehensive Sample Document}\\
+\large Demonstrating Structure, Mathematics, Tables, Code, and References}
+\author{Jane Doe \and John Smith}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document serves as a comprehensive reference template illustrating the core structural and typographic elements used in academic and technical writing. It covers hierarchical sectioning, inline text formatting, lists, display mathematics, theorem environments, multi-column and wrapping tables, source code listings, internal cross-references, and bibliographic citations.
+\end{abstract}
+
+\tableofcontents
+\vspace{1em}
+\hrule
+\vspace{1.5em}
+
+\section{Typography and Document Structure}
+\label{sec:typography}
+
+Well-structured technical documents rely on clear hierarchy and consistent typographic conventions. Standard text formatting includes \textbf{boldface} for strong emphasis, \textit{italics} or \emph{emphasized text} for introduced terms, \texttt{monospaced text} for identifiers, and \textsc{Small Capitals} for acronyms or formal titles.
+
+Special punctuation and reserved characters can be typeset cleanly in prose: an en-dash is used for numeric ranges such as pages 12--24, whereas an em-dash---like this one---sets off a parenthetical remark. Reserved symbols such as \&, \%, \$, \#, and \_ are escaped so they appear literally.\footnote{Footnotes provide supplementary commentary without interrupting the primary reading flow.}
+
+\subsection{Block Quotations}
+\label{subsec:quotes}
+
+Extended excerpts or notable statements are set apart using the quotation environment:
+
+\begin{quote}
+``Premature optimization is the root of all evil (or at least most of it) in programming.'' --- Donald E. Knuth \cite{knuth1984}
+\end{quote}
+
+\subsubsection{Paragraph-Level Headings}
+\paragraph{Run-in headings} are useful when a section requires fine-grained thematic divisions without cluttering the table of contents.
+
+\section{Lists and Enumerations}
+\label{sec:lists}
+
+Structured lists help readers scan procedures, criteria, and definitions quickly.
+
+\subsection{Nested Itemized and Enumerated Lists}
+
+\begin{enumerate}
+  \item \textbf{Planning Phase:} Define scope, audience, and structural outline.
+  \begin{itemize}
+    \item Identify primary data sources and citations.
+    \item Determine required tables, equations, and code examples.
+  \end{itemize}
+  \item \textbf{Drafting Phase:} Write prose with consistent terminology and clear transitions.
+  \item \textbf{Review Phase:} Verify all cross-references, mathematical derivations, and bibliographic entries.
+\end{enumerate}
+
+\subsection{Description Lists}
+
+\begin{description}
+  \item[Precision] The proportion of positive identifications that were actually correct.
+  \item[Recall] The proportion of actual positives that were correctly identified.
+  \item[$F_1$ Score] The harmonic mean of precision and recall, balancing both metrics into a single value.
+\end{description}
+
+\section{Mathematical Typesetting}
+\label{sec:math}
+
+Mathematical expressions may appear inline, such as Euler's identity $e^{i\pi} + 1 = 0$, or as numbered display equations for key formulas.
+
+\subsection{Numbered Equations and Aligned Derivations}
+
+The Gaussian probability density function with mean $\mu$ and variance $\sigma^2 > 0$ is given by:
+\begin{equation}
+  \label{eq:gaussian}
+  f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\!\left( -\frac{(x - \mu)^2}{2\sigma^2} \right).
+\end{equation}
+
+Multi-step derivations are aligned around relational operators using the \texttt{align} environment:
+\begin{align}
+  \sum_{k=1}^{n} k &= 1 + 2 + \dots + n \nonumber \\
+  &= \frac{n(n + 1)}{2}, \label{eq:arith-sum} \\
+  \int_{0}^{\infty} e^{-ax}\,dx &= \lim_{b \to \infty} \left[ -\frac{1}{a} e^{-ax} \right]_{0}^{b} = \frac{1}{a} \quad (a > 0). \label{eq:exp-int}
+\end{align}
+
+\subsection{Matrices and Piecewise Functions}
+
+Linear transformations can be represented in matrix form. For a rotation by angle $\theta$ in $\mathbb{R}^2$:
+\begin{equation}
+  \label{eq:rotation}
+  R(\theta) =
+  \begin{bmatrix}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta
+  \end{bmatrix}.
+\end{equation}
+
+Piecewise-defined functions, such as the Rectified Linear Unit (ReLU), use the \texttt{cases} environment:
+\begin{equation}
+  \label{eq:relu}
+  \operatorname{ReLU}(x) =
+  \begin{cases}
+    x & \text{if } x > 0, \\
+    0 & \text{if } x \le 0.
+  \end{cases}
+\end{equation}
+
+\section{Theorems, Definitions, and Proofs}
+\label{sec:theorems}
+
+Formal mathematical writing organizes claims into numbered definitions, lemmas, theorems, and proofs.
+
+\begin{definition}[Convergence of a Sequence]
+\label{def:convergence}
+A sequence of real numbers $(a_n)_{n=1}^{\infty}$ is said to \emph{converge} to a limit $L \in \mathbb{R}$ if for every $\varepsilon > 0$, there exists an integer $N \ge 1$ such that $|a_n - L| < \varepsilon$ for all $n \ge N$.
+\end{definition}
+
+\begin{theorem}[Uniqueness of Limits]
+\label{thm:uniqueness}
+If a sequence $(a_n)$ converges to $L_1$ and also converges to $L_2$, then $L_1 = L_2$.
+\end{theorem}
+
+\begin{proof}
+Suppose for contradiction that $L_1 \neq L_2$, and set $\varepsilon = \frac{1}{2}|L_1 - L_2| > 0$. By Definition~\ref{def:convergence}, there exist integers $N_1$ and $N_2$ such that $|a_n - L_1| < \varepsilon$ for all $n \ge N_1$ and $|a_n - L_2| < \varepsilon$ for all $n \ge N_2$. Let $N = \max(N_1, N_2)$. Then for $n \ge N$, the triangle inequality yields
+\[
+  |L_1 - L_2| \le |L_1 - a_n| + |a_n - L_2| < \varepsilon + \varepsilon = |L_1 - L_2|,
+\]
+which is a contradiction. Hence $L_1 = L_2$.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:uniqueness} holds in any Hausdorff topological space, not only in $\mathbb{R}$ with the standard Euclidean metric.
+\end{remark}
+
+\section{Tables and Data Presentation}
+\label{sec:tables}
+
+Publication-quality tables avoid vertical rules and rely on horizontal rules of varying thickness (\texttt{booktabs}) to separate headers, body rows, and summary totals.
+
+\subsection{Numeric Comparison Table}
+
+Table~\ref{tab:complexity} summarizes the asymptotic time and space complexity of three classical sorting algorithms.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Asymptotic time and auxiliary space complexity of selected sorting algorithms.}
+  \label{tab:complexity}
+  \begin{tabular}{lcccc}
+    \toprule
+    & \multicolumn{3}{c}{\textbf{Time Complexity}} & \textbf{Auxiliary} \\
+    \cmidrule(lr){2-4}
+    \textbf{Algorithm} & \textbf{Best} & \textbf{Average} & \textbf{Worst} & \textbf{Space} \\
+    \midrule
+    Insertion Sort & $O(n)$ & $O(n^2)$ & $O(n^2)$ & $O(1)$ \\
+    Merge Sort     & $O(n \log n)$ & $O(n \log n)$ & $O(n \log n)$ & $O(n)$ \\
+    Quicksort      & $O(n \log n)$ & $O(n \log n)$ & $O(n^2)$ & $O(\log n)$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Text-Wrapping Table}
+
+When cells contain multi-line descriptions, \texttt{tabularx} automatically allocates remaining width to \texttt{X} columns, as shown in Table~\ref{tab:environments}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Summary of common document environments demonstrated in this template.}
+  \label{tab:environments}
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Environment} & \textbf{Primary Purpose} \\
+    \midrule
+    \texttt{abstract} & Concise summary placed at the opening of an article or report. \\
+    \texttt{align} & Multi-line mathematical derivations aligned at specified operators. \\
+    \texttt{tabularx} & Full-width tables with automatic line wrapping in designated columns. \\
+    \texttt{lstlisting} & Formatted source code blocks with line numbers and syntax styling. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{Source Code Listings}
+\label{sec:code}
+
+Technical reports frequently include short algorithmic implementations. Listing~\ref{lst:quicksort} illustrates a concise recursive implementation of binary search in Python.
+
+\begin{lstlisting}[caption={Iterative binary search returning the index of a target value or $-1$.}, label={lst:quicksort}]
+def binary_search(arr, target):
+    """Return the index of target in sorted list arr, or -1 if absent."""
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+\end{lstlisting}
+
+\section{Cross-References and Citations}
+\label{sec:references}
+
+Internal cross-references remain automatically synchronized as sections, equations, or tables are reordered:
+\begin{itemize}
+  \item Section~\ref{sec:math} introduces the Gaussian density in Equation~\eqref{eq:gaussian}, the arithmetic series in Equation~\eqref{eq:arith-sum}, and the rotation matrix in Equation~\eqref{eq:rotation}.
+  \item Section~\ref{sec:theorems} proves Theorem~\ref{thm:uniqueness} on page~\pageref{thm:uniqueness} using Definition~\ref{def:convergence}.
+  \item Section~\ref{sec:tables} compares algorithm performance in Table~\ref{tab:complexity} and lists key environments in Table~\ref{tab:environments}.
+\end{itemize}
+
+For comprehensive coverage of document preparation principles and typesetting design, readers are referred to the foundational manuals by Knuth \cite{knuth1984}, Lamport \cite{lamport1994}, and Kopka and Daly \cite{kopka2003}.
+
+\begin{thebibliography}{9}
+
+\bibitem{knuth1984}
+Donald E. Knuth.
+\textit{The \TeX book}.
+Addison-Wesley, Reading, Massachusetts, 1984.
+
+\bibitem{lamport1994}
+Leslie Lamport.
+\textit{\LaTeX: A Document Preparation System}.
+Addison-Wesley, Reading, Massachusetts, 2nd edition, 1994.
+
+\bibitem{kopka2003}
+Helmut Kopka and Patrick W. Daly.
+\textit{Guide to \LaTeX}.
+Addison-Wesley, Boston, 4th edition, 2003.
+
+\end{thebibliography}
+
+\end{document}

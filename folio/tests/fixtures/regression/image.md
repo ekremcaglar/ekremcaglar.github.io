@@ -1,0 +1,5 @@
+# Image
+
+![tiny](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgAAACAAFUok9fAAAAAElFTkSuQmCC)
+
+After image.

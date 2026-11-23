@@ -1,0 +1,262 @@
+{
+ "DEFAULT_SAMPLE_MARKDOWN": {
+  "preprocessed": "# Multi-LLM Chat Transcripts to Word\n\n> [!USER] Derive the Black-Scholes PDE, give a piecewise payoff in `\\begin{cases}`, compare Gemini, Grok, Claude, and ChatGPT math output, and include a nested checklist with an indented code snippet.\n\n> [!ASSISTANT] Here is the complete breakdown with native Word equations, restarts on numbered lists, and 4-level nesting.\n\n> [!NOTE]\n> Copied from **Gemini**, **Grok**, **Claude**, or **ChatGPT**. Folio strips code-block toolbars and tracking links, preserves currency like $5 to $10/mo without false math triggers, and converts formulas like $e^{-rT}$ into editable Word OMML equations.\n\n## 1. Piecewise Payoff & Aligned Equations\n\nPiecewise terminal payoff with a single-sided brace:\n\n$$\nV(S, T) = \\begin{cases}\nS - K, & \\text{if } S > K \\quad (\\text{in the money}) \\\\\n0, & \\text{if } S \\le K \\quad (\\text{out of the money})\n\\end{cases}\n$$\n\nUnderbrace, overline, and operator names ($\\operatorname{argmin}$, $\\operatorname{Var}$):\n\n\\[\n\\hat{\\theta} = \\operatorname{argmin}_{\\theta \\in \\Theta} \\underbrace{\\frac{1}{n} \\sum_{i=1}^{n} \\left( y_i - \\overline{f}(x_i; \\theta) \\right)^2}_{\\text{Empirical Risk } \\mathcal{L}(\\theta)} + \\lambda \\|\\theta\\|_2^2\n\\]\n\n\\begin{align}\nd_1 &= \\frac{\\ln(S_0/K) + (r + \\sigma^2/2)T}{\\sigma \\sqrt{T}} \\\\\nd_2 &= d_1 - \\sigma \\sqrt{T}\n\\end{align}\n\nMultivariate summation with multi-line limits (`\\\\substack`):\n\n$$\n\\sum_{\\substack{0 \\le i \\le m \\\\ 0 < j < n}} P(i, j) \\quad \\binom{n}{k} = \\frac{n!}{k!(n-k)!}\n$$\n\nFont variants, accents, and strikethroughs:\n\n$$\n\\mathbb{R} \\quad \\mathcal{L} \\quad \\mathfrak{g} \\quad \\vec{v} \\quad \\widehat{xy} \\quad \\cancel{x} \\quad \\boxed{E = mc^2}\n$$\n\n## 2. Multi-Level Lists & Indented Code Blocks\n\n1. First numbered workflow step\n   1. Sub-step A with 4-level nesting support\n      1. Deep item i (`ilvl=2`)\n         - Fourth-level bullet (`ilvl=3`)\n   2. Sub-step B with an indented fenced code block inside the list:\n      ```python\n      def black_scholes_call(S: float, K: float, r: float, sigma: float, T: float) -> float:\n          'European call price with continuous discounting.'\n          return S  # preserved inside the list item\n      ```\n2. Second numbered step\n\nSeparate numbered list below (restarts at **1.** in Word):\n\n1. First item of the second list\n2. Second item with native Word footnote reference[^1]\n   - Water is H<sub>2</sub>O, discount factor is e<sup>-rT</sup>\n   - <span style=\"color:#8A3324\">Colored emphasis</span>, ==highlighted text==, and <u>underline</u>\n   - API tiers cost $5 ($10/mo for team seats) and $20–$50/mo for enterprise\n\n- [x] Parse Gemini, Grok, Claude, and ChatGPT clipboard HTML\n- [ ] Export `.docx` or click **Copy Rich** to paste directly into Word\n\n## 3. Comparison Table (with Escaped Pipes & Inline Math)\n\n| LLM Interface | Math Copy Format | Norm Notation | Status |\n| :--- | :---: | :---: | ---: |\n| Gemini | `data-math` / KaTeX | $\\|x\\|_2 \\mid y$ | Ready |\n| Grok | KaTeX + Markdown | $\\mathbb{E}[X \\mid \\mathcal{F}_t]$ | Ready |\n| Claude | KaTeX Annotation | $\\operatorname{Var}(R_p)$ | Ready |\n| ChatGPT | `\\[ ... \\]` & `\\( ... \\)` | $C = S_0 N(d_1) - K e^{-rT} N(d_2)$ | Ready |\n\n[^1]: Exported as a true Word footnote in `word/footnotes.xml` so references stay linked at the bottom of the page.\n",
+  "ast": "{\"blocks\":[{\"kind\":\"heading\",\"level\":1,\"children\":[{\"kind\":\"text\",\"text\":\"Multi-LLM Chat Transcripts to Word\"}]},{\"kind\":\"quote\",\"blocks\":[{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Derive the Black-Scholes PDE, give a piecewise payoff in \"},{\"kind\":\"code\",\"text\":\"\\\\begin{cases}\"},{\"kind\":\"text\",\"text\":\", compare Gemini, Grok, Claude, and ChatGPT math output, and include a nested checklist with an indented code snippet.\"}]}],\"callout\":\"user\"},{\"kind\":\"quote\",\"blocks\":[{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Here is the complete breakdown with native Word equations, restarts on numbered lists, and 4-level nesting.\"}]}],\"callout\":\"assistant\"},{\"kind\":\"quote\",\"blocks\":[{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Copied from \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"Gemini\"}]},{\"kind\":\"text\",\"text\":\", \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"Grok\"}]},{\"kind\":\"text\",\"text\":\", \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"Claude\"}]},{\"kind\":\"text\",\"text\":\", or \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"ChatGPT\"}]},{\"kind\":\"text\",\"text\":\". Folio strips code-block toolbars and tracking links, preserves currency like $5 to $10/mo without false math triggers, and converts formulas like  into editable Word OMML equations.\"}]}],\"callout\":\"note\"},{\"kind\":\"heading\",\"level\":2,\"children\":[{\"kind\":\"text\",\"text\":\"1. Piecewise Payoff & Aligned Equations\"}]},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Piecewise terminal payoff with a single-sided brace:\"}]},{\"kind\":\"math\",\"tex\":\"V(S, T) = \\\\begin{cases}\\nS - K, & \\\\text{if } S > K \\\\quad (\\\\text{in the money}) \\\\\\\\\\n0, & \\\\text{if } S \\\\le K \\\\quad (\\\\text{out of the money})\\n\\\\end{cases}\"},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Underbrace, overline, and operator names (\"},{\"kind\":\"math\",\"tex\":\"\\\\operatorname{argmin}\"},{\"kind\":\"text\",\"text\":\", \"},{\"kind\":\"math\",\"tex\":\"\\\\operatorname{Var}\"},{\"kind\":\"text\",\"text\":\"):\"}]},{\"kind\":\"math\",\"tex\":\"\\\\hat{\\\\theta} = \\\\operatorname{argmin}_{\\\\theta \\\\in \\\\Theta} \\\\underbrace{\\\\frac{1}{n} \\\\sum_{i=1}^{n} \\\\left( y_i - \\\\overline{f}(x_i; \\\\theta) \\\\right)^2}_{\\\\text{Empirical Risk } \\\\mathcal{L}(\\\\theta)} + \\\\lambda \\\\|\\\\theta\\\\|_2^2\"},{\"kind\":\"math\",\"tex\":\"\\\\begin{align}\\nd_1 &= \\\\frac{\\\\ln(S_0/K) + (r + \\\\sigma^2/2)T}{\\\\sigma \\\\sqrt{T}} \\\\\\\\\\nd_2 &= d_1 - \\\\sigma \\\\sqrt{T}\\n\\\\end{align}\"},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Multivariate summation with multi-line limits (\"},{\"kind\":\"code\",\"text\":\"\\\\\\\\substack\"},{\"kind\":\"text\",\"text\":\"):\"}]},{\"kind\":\"math\",\"tex\":\"\\\\sum_{\\\\substack{0 \\\\le i \\\\le m \\\\\\\\ 0 < j < n}} P(i, j) \\\\quad \\\\binom{n}{k} = \\\\frac{n!}{k!(n-k)!}\"},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Font variants, accents, and strikethroughs:\"}]},{\"kind\":\"math\",\"tex\":\"\\\\mathbb{R} \\\\quad \\\\mathcal{L} \\\\quad \\\\mathfrak{g} \\\\quad \\\\vec{v} \\\\quad \\\\widehat{xy} \\\\quad \\\\cancel{x} \\\\quad \\\\boxed{E = mc^2}\"},{\"kind\":\"heading\",\"level\":2,\"children\":[{\"kind\":\"text\",\"text\":\"2. Multi-Level Lists & Indented Code Blocks\"}]},{\"kind\":\"list\",\"ordered\":true,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"First numbered workflow step\"}],\"nested\":[{\"kind\":\"list\",\"ordered\":true,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Sub-step A with 4-level nesting support\"}],\"nested\":[{\"kind\":\"list\",\"ordered\":true,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Deep item i (\"},{\"kind\":\"code\",\"text\":\"ilvl=2\"},{\"kind\":\"text\",\"text\":\")\"}],\"nested\":[{\"kind\":\"list\",\"ordered\":false,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Fourth-level bullet (\"},{\"kind\":\"code\",\"text\":\"ilvl=3\"},{\"kind\":\"text\",\"text\":\")\"}],\"nested\":[]}]}]}]}]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Sub-step B with an indented fenced code block inside the list:\"}],\"nested\":[{\"kind\":\"code\",\"text\":\"def black_scholes_call(S: float, K: float, r: float, sigma: float, T: float) -> float:\\n    'European call price with continuous discounting.'\\n    return S  # preserved inside the list item\",\"lang\":\"python\"}]}]}]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Second numbered step\"},{\"kind\":\"break\"},{\"kind\":\"text\",\"text\":\"Separate numbered list below (restarts at \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"1.\"}]},{\"kind\":\"text\",\"text\":\" in Word):\"}],\"nested\":[]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"First item of the second list\"}],\"nested\":[]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Second item with native Word footnote reference\"},{\"kind\":\"footnote\",\"id\":\"1\"}],\"nested\":[{\"kind\":\"list\",\"ordered\":false,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Water is H\"},{\"kind\":\"sub\",\"children\":[{\"kind\":\"text\",\"text\":\"2\"}]},{\"kind\":\"text\",\"text\":\"O, discount factor is e\"},{\"kind\":\"sup\",\"children\":[{\"kind\":\"text\",\"text\":\"-rT\"}]}],\"nested\":[]},{\"checked\":null,\"children\":[{\"kind\":\"color\",\"hex\":\"8A3324\",\"children\":[{\"kind\":\"text\",\"text\":\"Colored emphasis\"}]},{\"kind\":\"text\",\"text\":\", \"},{\"kind\":\"mark\",\"children\":[{\"kind\":\"text\",\"text\":\"highlighted text\"}]},{\"kind\":\"text\",\"text\":\", and \"},{\"kind\":\"underline\",\"children\":[{\"kind\":\"text\",\"text\":\"underline\"}]}],\"nested\":[]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"API tiers cost $5 ($10/mo for team seats) and $20–$50/mo for enterprise\"}],\"nested\":[]}]},{\"kind\":\"list\",\"ordered\":false,\"start\":1,\"items\":[{\"checked\":true,\"children\":[{\"kind\":\"text\",\"text\":\"Parse Gemini, Grok, Claude, and ChatGPT clipboard HTML\"}],\"nested\":[]},{\"checked\":false,\"children\":[{\"kind\":\"text\",\"text\":\"Export \"},{\"kind\":\"code\",\"text\":\".docx\"},{\"kind\":\"text\",\"text\":\" or click \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"Copy Rich\"}]},{\"kind\":\"text\",\"text\":\" to paste directly into Word\"}],\"nested\":[]}]}]}]},{\"kind\":\"heading\",\"level\":2,\"children\":[{\"kind\":\"text\",\"text\":\"3. Comparison Table (with Escaped Pipes & Inline Math)\"}]},{\"kind\":\"table\",\"header\":[[{\"kind\":\"text\",\"text\":\"LLM Interface\"}],[{\"kind\":\"text\",\"text\":\"Math Copy Format\"}],[{\"kind\":\"text\",\"text\":\"Norm Notation\"}],[{\"kind\":\"text\",\"text\":\"Status\"}]],\"align\":[\"left\",\"center\",\"center\",\"right\"],\"rows\":[[[{\"kind\":\"text\",\"text\":\"Gemini\"}],[{\"kind\":\"code\",\"text\":\"data-math\"},{\"kind\":\"text\",\"text\":\" / KaTeX\"}],[{\"kind\":\"math\",\"tex\":\"\\\\|x\\\\|_2 \\\\mid y\"}],[{\"kind\":\"text\",\"text\":\"Ready\"}]],[[{\"kind\":\"text\",\"text\":\"Grok\"}],[{\"kind\":\"text\",\"text\":\"KaTeX + Markdown\"}],[{\"kind\":\"math\",\"tex\":\"\\\\mathbb{E}[X \\\\mid \\\\mathcal{F}_t]\"}],[{\"kind\":\"text\",\"text\":\"Ready\"}]],[[{\"kind\":\"text\",\"text\":\"Claude\"}],[{\"kind\":\"text\",\"text\":\"KaTeX Annotation\"}],[{\"kind\":\"math\",\"tex\":\"\\\\operatorname{Var}(R_p)\"}],[{\"kind\":\"text\",\"text\":\"Ready\"}]],[[{\"kind\":\"text\",\"text\":\"ChatGPT\"}],[{\"kind\":\"code\",\"text\":\"\\\\[ ... \\\\]\"},{\"kind\":\"text\",\"text\":\" & \"},{\"kind\":\"code\",\"text\":\"\\\\( ... \\\\)\"}],[{\"kind\":\"math\",\"tex\":\"C = S_0 N(d_1) - K e^{-rT} N(d_2)\"}],[{\"kind\":\"text\",\"text\":\"Ready\"}]]]},{\"kind\":\"heading\",\"level\":2,\"isFootnoteHeading\":true,\"children\":[{\"kind\":\"text\",\"text\":\"Notes\"}]},{\"kind\":\"paragraph\",\"isFootnoteEntry\":true,\"children\":[{\"kind\":\"footnote\",\"id\":\"1\"},{\"kind\":\"text\",\"text\":\" \"},{\"kind\":\"text\",\"text\":\"Exported as a true Word footnote in \"},{\"kind\":\"code\",\"text\":\"word/footnotes.xml\"},{\"kind\":\"text\",\"text\":\" so references stay linked at the bottom of the page.\"}]}],\"footnotes\":[{\"id\":\"1\",\"children\":[{\"kind\":\"text\",\"text\":\"Exported as a true Word footnote in \"},{\"kind\":\"code\",\"text\":\"word/footnotes.xml\"},{\"kind\":\"text\",\"text\":\" so references stay linked at the bottom of the page.\"}]}]}",
+  "stats": "11 equations · 1 table · 1 code · 3 callouts · 1 footnote · A4 · offline",
+  "formulas": [
+   [
+    "V(S, T) = \\begin{cases}\nS - K, & \\text{if } S > K \\quad (\\text{in the money}) \\\\\n0, & \\text{if } S \\le K \\quad (\\text{out of the money})\n\\end{cases}",
+    true
+   ],
+   [
+    "\\operatorname{argmin}",
+    true
+   ],
+   [
+    "\\operatorname{Var}",
+    true
+   ],
+   [
+    "\\hat{\\theta} = \\operatorname{argmin}_{\\theta \\in \\Theta} \\underbrace{\\frac{1}{n} \\sum_{i=1}^{n} \\left( y_i - \\overline{f}(x_i; \\theta) \\right)^2}_{\\text{Empirical Risk } \\mathcal{L}(\\theta)} + \\lambda \\|\\theta\\|_2^2",
+    true
+   ],
+   [
+    "\\begin{align}\nd_1 &= \\frac{\\ln(S_0/K) + (r + \\sigma^2/2)T}{\\sigma \\sqrt{T}} \\\\\nd_2 &= d_1 - \\sigma \\sqrt{T}\n\\end{align}",
+    true
+   ],
+   [
+    "\\sum_{\\substack{0 \\le i \\le m \\\\ 0 < j < n}} P(i, j) \\quad \\binom{n}{k} = \\frac{n!}{k!(n-k)!}",
+    true
+   ],
+   [
+    "\\mathbb{R} \\quad \\mathcal{L} \\quad \\mathfrak{g} \\quad \\vec{v} \\quad \\widehat{xy} \\quad \\cancel{x} \\quad \\boxed{E = mc^2}",
+    true
+   ],
+   [
+    "\\|x\\|_2 \\mid y",
+    true
+   ],
+   [
+    "\\mathbb{E}[X \\mid \\mathcal{F}_t]",
+    true
+   ],
+   [
+    "\\operatorname{Var}(R_p)",
+    true
+   ],
+   [
+    "C = S_0 N(d_1) - K e^{-rT} N(d_2)",
+    true
+   ]
+  ],
+  "docx": {
+   "[Content_Types].xml": "def57382eeaea96f1ce1104a3ea10b681d7a506ee08b24ef74288a5c3a4bc850",
+   "_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "_rels/.rels": "8bb297d933f77642163ea72227ca75b5a37b6d1bf4bf39b4a1b23061f65de7be",
+   "docProps/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "docProps/core.xml": "a0efa919af09377e77e52734e6dcf81a70e1cfcd40c885649961ebe44c5c04e6",
+   "word/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/document.xml.rels": "d221563147df623ce2cc81370bf5dcb06e785a4ad6037466728ecccdc011340c",
+   "word/document.xml": "b2a469cda4791785d70ffc47ee44d263409fec0c16a56ebc0825d46dd7eb7018",
+   "word/footer1.xml": "f4f69156fe2d97bf67924f1de90afff37391e9446c87d0968f7cfbde42dc0c8e",
+   "word/footnotes.xml": "8a2d51b9eb9939b404020ad0852f5bd5e456172629fb623902193cb6d2a34f4f",
+   "word/header1.xml": "1aa26c9c1b60192f6e8770d9b83c08f0b3f1a1ae05ee939a5f52e2e2ab038c49",
+   "word/numbering.xml": "41d0361c9f57b1e6bfa6e9b9c3273dafc48c85b00cb1214cc08575e85a255128",
+   "word/settings.xml": "c8e212d6c634129bdc32de385df39ae83e098f44fceee013616fad88645269e3",
+   "word/styles.xml": "27e2eab54cad086641bc230ca8557f6ec3d69bc4b4aa50ff2e07cd23994d0170"
+  }
+ },
+ "chat-chatgpt.md": {
+  "preprocessed": "> [!USER] Explain the quadratic formula with a table.\n\n> [!ASSISTANT] Here is the breakdown.\n\nThe roots of $ax^2 + bx + c = 0$ are\n\n$$\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n$$\n\n| Term | Meaning | Example |\n|:---|:---:|---:|\n| $a$ | leading coefficient | 2 |\n| $b$ | linear coefficient<br>second line | -3 |\n| `c` | constant | 1 |\n\n1. Compute the discriminant $\\Delta = b^2 - 4ac$.\n   - If $\\Delta > 0$: two roots\n   - If $\\Delta = 0$: one root\n2. Apply the formula.[^1]\n\n> [!NOTE]\n> Prices are examples only, costs $5 and $10.\n\n- [x] done task\n- [ ] open task\n\n[^1]: Footnote text with **bold**.\n",
+  "ast": "{\"blocks\":[{\"kind\":\"quote\",\"blocks\":[{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Explain the quadratic formula with a table.\"}]}],\"callout\":\"user\"},{\"kind\":\"quote\",\"blocks\":[{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Here is the breakdown.\"}]}],\"callout\":\"assistant\"},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"The roots of \"},{\"kind\":\"math\",\"tex\":\"ax^2 + bx + c = 0\"},{\"kind\":\"text\",\"text\":\" are\"}]},{\"kind\":\"math\",\"tex\":\"x = \\\\frac{-b \\\\pm \\\\sqrt{b^2 - 4ac}}{2a}\"},{\"kind\":\"table\",\"header\":[[{\"kind\":\"text\",\"text\":\"Term\"}],[{\"kind\":\"text\",\"text\":\"Meaning\"}],[{\"kind\":\"text\",\"text\":\"Example\"}]],\"align\":[\"left\",\"center\",\"right\"],\"rows\":[[[{\"kind\":\"math\",\"tex\":\"a\"}],[{\"kind\":\"text\",\"text\":\"leading coefficient\"}],[{\"kind\":\"text\",\"text\":\"2\"}]],[[{\"kind\":\"math\",\"tex\":\"b\"}],[{\"kind\":\"text\",\"text\":\"linear coefficient\"},{\"kind\":\"break\"},{\"kind\":\"text\",\"text\":\"second line\"}],[{\"kind\":\"text\",\"text\":\"-3\"}]],[[{\"kind\":\"code\",\"text\":\"c\"}],[{\"kind\":\"text\",\"text\":\"constant\"}],[{\"kind\":\"text\",\"text\":\"1\"}]]]},{\"kind\":\"list\",\"ordered\":true,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Compute the discriminant \"},{\"kind\":\"math\",\"tex\":\"\\\\Delta = b^2 - 4ac\"},{\"kind\":\"text\",\"text\":\".\"}],\"nested\":[{\"kind\":\"list\",\"ordered\":false,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"If \"},{\"kind\":\"math\",\"tex\":\"\\\\Delta > 0\"},{\"kind\":\"text\",\"text\":\": two roots\"}],\"nested\":[]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"If \"},{\"kind\":\"math\",\"tex\":\"\\\\Delta = 0\"},{\"kind\":\"text\",\"text\":\": one root\"}],\"nested\":[]}]}]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"Apply the formula.\"},{\"kind\":\"footnote\",\"id\":\"1\"}],\"nested\":[]}]},{\"kind\":\"quote\",\"blocks\":[{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Prices are examples only, costs $5 and $10.\"}]}],\"callout\":\"note\"},{\"kind\":\"list\",\"ordered\":false,\"start\":1,\"items\":[{\"checked\":true,\"children\":[{\"kind\":\"text\",\"text\":\"done task\"}],\"nested\":[]},{\"checked\":false,\"children\":[{\"kind\":\"text\",\"text\":\"open task\"}],\"nested\":[]}]},{\"kind\":\"heading\",\"level\":2,\"isFootnoteHeading\":true,\"children\":[{\"kind\":\"text\",\"text\":\"Notes\"}]},{\"kind\":\"paragraph\",\"isFootnoteEntry\":true,\"children\":[{\"kind\":\"footnote\",\"id\":\"1\"},{\"kind\":\"text\",\"text\":\" \"},{\"kind\":\"text\",\"text\":\"Footnote text with \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"bold\"}]},{\"kind\":\"text\",\"text\":\".\"}]}],\"footnotes\":[{\"id\":\"1\",\"children\":[{\"kind\":\"text\",\"text\":\"Footnote text with \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"bold\"}]},{\"kind\":\"text\",\"text\":\".\"}]}]}",
+  "stats": "7 equations · 1 table · 3 callouts · 1 footnote · A4 · offline",
+  "formulas": [
+   [
+    "ax^2 + bx + c = 0",
+    true
+   ],
+   [
+    "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+    true
+   ],
+   [
+    "a",
+    true
+   ],
+   [
+    "b",
+    true
+   ],
+   [
+    "\\Delta = b^2 - 4ac",
+    true
+   ],
+   [
+    "\\Delta > 0",
+    true
+   ],
+   [
+    "\\Delta = 0",
+    true
+   ]
+  ],
+  "docx": {
+   "[Content_Types].xml": "def57382eeaea96f1ce1104a3ea10b681d7a506ee08b24ef74288a5c3a4bc850",
+   "_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "_rels/.rels": "8bb297d933f77642163ea72227ca75b5a37b6d1bf4bf39b4a1b23061f65de7be",
+   "docProps/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "docProps/core.xml": "412c161908b16af91eab0c85245134b2f9fc4009c3958e2ef9112b44905055e2",
+   "word/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/document.xml.rels": "d221563147df623ce2cc81370bf5dcb06e785a4ad6037466728ecccdc011340c",
+   "word/document.xml": "770018f1bb4d04b1031ab66caea5727cb8f4115a98ea1897437d19de9830c1ca",
+   "word/footer1.xml": "f4f69156fe2d97bf67924f1de90afff37391e9446c87d0968f7cfbde42dc0c8e",
+   "word/footnotes.xml": "b2795c54a9b150f04705309ac531077dac2f39385f5ea1e152732f59da907cbe",
+   "word/header1.xml": "90086b0ae3d54d554dd3e699cd97b84f7fd88f6a084c48a11e6adc030d914300",
+   "word/numbering.xml": "3f0c11437ce4e82fd83f78f53a2c44aab9b4220a9f6978da710e34ab022cf010",
+   "word/settings.xml": "c8e212d6c634129bdc32de385df39ae83e098f44fceee013616fad88645269e3",
+   "word/styles.xml": "27e2eab54cad086641bc230ca8557f6ec3d69bc4b4aa50ff2e07cd23994d0170"
+  }
+ },
+ "code-and-latex-in-fence.md": {
+  "preprocessed": "## Here is a LaTeX file\n\n```latex\n\\documentclass{article}\n\\begin{document}\nHello $x$.\n\\end{document}\n```\n\nSome `inline code` and a python block:\n\n```python\ndef f(x):\n    return x ** 2  # square\n```\n\n~~~js\nconst a = `template ${1}`;\n~~~\n\n==highlight== ~~strike~~ <u>under</u> <span style=\"color:#c00\">red</span> H<sub>2</sub>O x<sup>2</sup>\n",
+  "ast": "{\"blocks\":[{\"kind\":\"heading\",\"level\":2,\"children\":[{\"kind\":\"text\",\"text\":\"Here is a LaTeX file\"}]},{\"kind\":\"code\",\"text\":\"\\\\documentclass{article}\\n\\\\begin{document}\\nHello $x$.\\n\\\\end{document}\",\"lang\":\"latex\"},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Some \"},{\"kind\":\"code\",\"text\":\"inline code\"},{\"kind\":\"text\",\"text\":\" and a python block:\"}]},{\"kind\":\"code\",\"text\":\"def f(x):\\n    return x ** 2  # square\",\"lang\":\"python\"},{\"kind\":\"code\",\"text\":\"const a = `template ${1}`;\",\"lang\":\"js\"},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"mark\",\"children\":[{\"kind\":\"text\",\"text\":\"highlight\"}]},{\"kind\":\"text\",\"text\":\" \"},{\"kind\":\"strike\",\"children\":[{\"kind\":\"text\",\"text\":\"strike\"}]},{\"kind\":\"text\",\"text\":\" \"},{\"kind\":\"underline\",\"children\":[{\"kind\":\"text\",\"text\":\"under\"}]},{\"kind\":\"text\",\"text\":\" \"},{\"kind\":\"color\",\"hex\":\"CC0000\",\"children\":[{\"kind\":\"text\",\"text\":\"red\"}]},{\"kind\":\"text\",\"text\":\" H\"},{\"kind\":\"sub\",\"children\":[{\"kind\":\"text\",\"text\":\"2\"}]},{\"kind\":\"text\",\"text\":\"O x\"},{\"kind\":\"sup\",\"children\":[{\"kind\":\"text\",\"text\":\"2\"}]}]}],\"footnotes\":[]}",
+  "stats": "0 equations · 3 code · A4 · offline",
+  "formulas": [],
+  "docx": {
+   "[Content_Types].xml": "601e786427aa6dba9b60f871a3a4b0797720a3ae871125b2d076081564ce2795",
+   "_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "_rels/.rels": "8bb297d933f77642163ea72227ca75b5a37b6d1bf4bf39b4a1b23061f65de7be",
+   "docProps/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "docProps/core.xml": "412c161908b16af91eab0c85245134b2f9fc4009c3958e2ef9112b44905055e2",
+   "word/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/document.xml.rels": "609b6c0bec421f27c1eedca1c1116a94c5db4e62ac5a182108251d8c237c6d53",
+   "word/document.xml": "6285db0c6a400ea0414c625e3a3256a8f19ac5f0178f18254bddff3abf669ea1",
+   "word/footer1.xml": "f4f69156fe2d97bf67924f1de90afff37391e9446c87d0968f7cfbde42dc0c8e",
+   "word/header1.xml": "90086b0ae3d54d554dd3e699cd97b84f7fd88f6a084c48a11e6adc030d914300",
+   "word/numbering.xml": "c09f2618f4dd04afcddce5da2f358f6e5d272220560564d81d7828221d030e68",
+   "word/settings.xml": "c8e212d6c634129bdc32de385df39ae83e098f44fceee013616fad88645269e3",
+   "word/styles.xml": "27e2eab54cad086641bc230ca8557f6ec3d69bc4b4aa50ff2e07cd23994d0170"
+  }
+ },
+ "documentclass-not-first.md": {
+  "preprocessed": "Notes about \\documentclass{article} usage: the line above is prose, not a document.\n\nAlso mention \\begin{document} mid-sentence.\n",
+  "ast": "{\"blocks\":[{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Notes about \\\\documentclass{article} usage: the line above is prose, not a document.\"}]},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Also mention \\\\begin{document} mid-sentence.\"}]}],\"footnotes\":[]}",
+  "stats": "0 equations · A4 · offline",
+  "formulas": [],
+  "docx": {
+   "[Content_Types].xml": "601e786427aa6dba9b60f871a3a4b0797720a3ae871125b2d076081564ce2795",
+   "_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "_rels/.rels": "8bb297d933f77642163ea72227ca75b5a37b6d1bf4bf39b4a1b23061f65de7be",
+   "docProps/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "docProps/core.xml": "412c161908b16af91eab0c85245134b2f9fc4009c3958e2ef9112b44905055e2",
+   "word/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/document.xml.rels": "609b6c0bec421f27c1eedca1c1116a94c5db4e62ac5a182108251d8c237c6d53",
+   "word/document.xml": "7d8ea3c7c53ba6376a5cf6c67253885a998a52ca557a4341e7b4c748f79ae8fd",
+   "word/footer1.xml": "f4f69156fe2d97bf67924f1de90afff37391e9446c87d0968f7cfbde42dc0c8e",
+   "word/header1.xml": "90086b0ae3d54d554dd3e699cd97b84f7fd88f6a084c48a11e6adc030d914300",
+   "word/numbering.xml": "c09f2618f4dd04afcddce5da2f358f6e5d272220560564d81d7828221d030e68",
+   "word/settings.xml": "c8e212d6c634129bdc32de385df39ae83e098f44fceee013616fad88645269e3",
+   "word/styles.xml": "27e2eab54cad086641bc230ca8557f6ec3d69bc4b4aa50ff2e07cd23994d0170"
+  }
+ },
+ "gemini.html": {
+  "shouldConvertClipboardHtml": true,
+  "htmlToMarkdown": "## Gemini answer\n\nText with **bold** and *italic* and `code`.\n\n| A | B |  |\n| --- | --- | --- |\n| 1 | 2 | 3 |\n\n- one\n- two\n  - nested\n\n```python\nprint(\"hi\")\n```\n\n$x^2$",
+  "preprocessed": "## Gemini answer\n\nText with **bold** and *italic* and `code`.\n\n| A | B |  |\n| --- | --- | --- |\n| 1 | 2 | 3 |\n\n- one\n- two\n  - nested\n\n```python\nprint(\"hi\")\n```\n\n$x^2$",
+  "ast": "{\"blocks\":[{\"kind\":\"heading\",\"level\":2,\"children\":[{\"kind\":\"text\",\"text\":\"Gemini answer\"}]},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Text with \"},{\"kind\":\"strong\",\"children\":[{\"kind\":\"text\",\"text\":\"bold\"}]},{\"kind\":\"text\",\"text\":\" and \"},{\"kind\":\"em\",\"children\":[{\"kind\":\"text\",\"text\":\"italic\"}]},{\"kind\":\"text\",\"text\":\" and \"},{\"kind\":\"code\",\"text\":\"code\"},{\"kind\":\"text\",\"text\":\".\"}]},{\"kind\":\"table\",\"header\":[[{\"kind\":\"text\",\"text\":\"A\"}],[{\"kind\":\"text\",\"text\":\"B\"}],[]],\"align\":[\"left\",\"left\",\"left\"],\"rows\":[[[{\"kind\":\"text\",\"text\":\"1\"}],[{\"kind\":\"text\",\"text\":\"2\"}],[{\"kind\":\"text\",\"text\":\"3\"}]]]},{\"kind\":\"list\",\"ordered\":false,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"one\"}],\"nested\":[]},{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"two\"}],\"nested\":[{\"kind\":\"list\",\"ordered\":false,\"start\":1,\"items\":[{\"checked\":null,\"children\":[{\"kind\":\"text\",\"text\":\"nested\"}],\"nested\":[]}]}]}]},{\"kind\":\"code\",\"text\":\"print(\\\"hi\\\")\",\"lang\":\"python\"},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"math\",\"tex\":\"x^2\"}]}],\"footnotes\":[]}",
+  "stats": "1 equation · 1 table · 1 code · A4 · offline",
+  "formulas": [
+   [
+    "x^2",
+    true
+   ]
+  ],
+  "docx": {
+   "[Content_Types].xml": "601e786427aa6dba9b60f871a3a4b0797720a3ae871125b2d076081564ce2795",
+   "_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "_rels/.rels": "8bb297d933f77642163ea72227ca75b5a37b6d1bf4bf39b4a1b23061f65de7be",
+   "docProps/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "docProps/core.xml": "412c161908b16af91eab0c85245134b2f9fc4009c3958e2ef9112b44905055e2",
+   "word/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/document.xml.rels": "609b6c0bec421f27c1eedca1c1116a94c5db4e62ac5a182108251d8c237c6d53",
+   "word/document.xml": "4e0936e12521d80fd7cfda8cb042c036fa36a3f6f42eb6b8a0bf7dc31277d25d",
+   "word/footer1.xml": "f4f69156fe2d97bf67924f1de90afff37391e9446c87d0968f7cfbde42dc0c8e",
+   "word/header1.xml": "90086b0ae3d54d554dd3e699cd97b84f7fd88f6a084c48a11e6adc030d914300",
+   "word/numbering.xml": "c09f2618f4dd04afcddce5da2f358f6e5d272220560564d81d7828221d030e68",
+   "word/settings.xml": "c8e212d6c634129bdc32de385df39ae83e098f44fceee013616fad88645269e3",
+   "word/styles.xml": "27e2eab54cad086641bc230ca8557f6ec3d69bc4b4aa50ff2e07cd23994d0170"
+  }
+ },
+ "image.md": {
+  "preprocessed": "# Image\n\n![tiny](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgAAACAAFUok9fAAAAAElFTkSuQmCC)\n\nAfter image.\n",
+  "ast": "{\"blocks\":[{\"kind\":\"heading\",\"level\":1,\"children\":[{\"kind\":\"text\",\"text\":\"Image\"}]},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"image\",\"alt\":\"tiny\",\"src\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgAAACAAFUok9fAAAAAElFTkSuQmCC\"}]},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"After image.\"}]}],\"footnotes\":[]}",
+  "stats": "0 equations · A4 · offline",
+  "formulas": [],
+  "docx": {
+   "[Content_Types].xml": "601e786427aa6dba9b60f871a3a4b0797720a3ae871125b2d076081564ce2795",
+   "_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "_rels/.rels": "8bb297d933f77642163ea72227ca75b5a37b6d1bf4bf39b4a1b23061f65de7be",
+   "docProps/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "docProps/core.xml": "cc067a56f11e5219ee5e6fe4e1b14247e729df49df955cb18d1cb36f5db67a7d",
+   "word/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/document.xml.rels": "58d234225cbefa8df98fe475623df0fd5b9138e571b5dafe04341d25d37e58b7",
+   "word/document.xml": "bbf40f69c22e113c38ae9ec9028727db7d174c16e82534c3ff79118dcbd0c40d",
+   "word/footer1.xml": "f4f69156fe2d97bf67924f1de90afff37391e9446c87d0968f7cfbde42dc0c8e",
+   "word/header1.xml": "34e1ea32e3b9f8e1362d85eacd31d9eb684f8bba20c60df0237cd26b9b6bd9fb",
+   "word/media/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/media/image1.png": "41123021cc61d73705371231d373b408a73b110a1594f5622a09f779f979966e",
+   "word/numbering.xml": "c09f2618f4dd04afcddce5da2f358f6e5d272220560564d81d7828221d030e68",
+   "word/settings.xml": "c8e212d6c634129bdc32de385df39ae83e098f44fceee013616fad88645269e3",
+   "word/styles.xml": "27e2eab54cad086641bc230ca8557f6ec3d69bc4b4aa50ff2e07cd23994d0170"
+  }
+ },
+ "math-envs.md": {
+  "preprocessed": "# Math environments\n\nInline \\(e^{i\\pi}+1=0\\) and display:\n\n\\[\n\\int_0^1 x^2\\,dx = \\frac{1}{3}\n\\]\n\n\\begin{cases}\nx & x > 0 \\\\\n-x & x \\le 0\n\\end{cases}\n\n\\begin{align}\na &= b + c \\\\\n&= d\n\\end{align}\n\n$$\\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}$$\n",
+  "ast": "{\"blocks\":[{\"kind\":\"heading\",\"level\":1,\"children\":[{\"kind\":\"text\",\"text\":\"Math environments\"}]},{\"kind\":\"paragraph\",\"children\":[{\"kind\":\"text\",\"text\":\"Inline \"},{\"kind\":\"math\",\"tex\":\"e^{i\\\\pi}+1=0\"},{\"kind\":\"text\",\"text\":\" and display:\"}]},{\"kind\":\"math\",\"tex\":\"\\\\int_0^1 x^2\\\\,dx = \\\\frac{1}{3}\"},{\"kind\":\"math\",\"tex\":\"\\\\begin{cases}\\nx & x > 0 \\\\\\\\\\n-x & x \\\\le 0\\n\\\\end{cases}\"},{\"kind\":\"math\",\"tex\":\"\\\\begin{align}\\na &= b + c \\\\\\\\\\n&= d\\n\\\\end{align}\"},{\"kind\":\"math\",\"tex\":\"\\\\begin{bmatrix} 1 & 2 \\\\\\\\ 3 & 4 \\\\end{bmatrix}\"}],\"footnotes\":[]}",
+  "stats": "5 equations · A4 · offline",
+  "formulas": [
+   [
+    "e^{i\\pi}+1=0",
+    true
+   ],
+   [
+    "\\int_0^1 x^2\\,dx = \\frac{1}{3}",
+    true
+   ],
+   [
+    "\\begin{cases}\nx & x > 0 \\\\\n-x & x \\le 0\n\\end{cases}",
+    true
+   ],
+   [
+    "\\begin{align}\na &= b + c \\\\\n&= d\n\\end{align}",
+    true
+   ],
+   [
+    "\\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}",
+    true
+   ]
+  ],
+  "docx": {
+   "[Content_Types].xml": "601e786427aa6dba9b60f871a3a4b0797720a3ae871125b2d076081564ce2795",
+   "_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "_rels/.rels": "8bb297d933f77642163ea72227ca75b5a37b6d1bf4bf39b4a1b23061f65de7be",
+   "docProps/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "docProps/core.xml": "064f51b6c67323b9a4b2d4b18d4987f6fa2517ab3837fde3d718e6032835dbdb",
+   "word/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "word/_rels/document.xml.rels": "609b6c0bec421f27c1eedca1c1116a94c5db4e62ac5a182108251d8c237c6d53",
+   "word/document.xml": "6f5add373321e0b14e659ed449e76f88e3317beb298933e63557638016fe902f",
+   "word/footer1.xml": "f4f69156fe2d97bf67924f1de90afff37391e9446c87d0968f7cfbde42dc0c8e",
+   "word/header1.xml": "047e72c7a922032d92511f1b04b3ae8beac5a03cc7697d3dcddd664821d6598c",
+   "word/numbering.xml": "c09f2618f4dd04afcddce5da2f358f6e5d272220560564d81d7828221d030e68",
+   "word/settings.xml": "c8e212d6c634129bdc32de385df39ae83e098f44fceee013616fad88645269e3",
+   "word/styles.xml": "27e2eab54cad086641bc230ca8557f6ec3d69bc4b4aa50ff2e07cd23994d0170"
+  }
+ }
+}

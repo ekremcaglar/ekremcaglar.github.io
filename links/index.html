@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homelab links</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111827'/><path d='M13 19l6-6M11 15l-2 2a4 4 0 006 6l2-2M21 17l2-2a4 4 0 00-6-6l-2 2' stroke='%2360a5fa' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>" type="image/svg+xml">
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--card:#161e2e;--line:#243047;--text:#e5e9f0;--mute:#8b95a7;--acc:#60a5fa;--up:#22c55e;--down:#ef4444;--unk:#6b7280}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:rgba(11,15,23,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1200px;margin:0 auto;padding:14px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+h1{font-size:18px;margin:0;font-weight:650;letter-spacing:.2px}
+h1 span{color:var(--mute);font-weight:400;font-size:13px;margin-left:8px}
+#q{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 12px;font-size:15px;outline:none}
+#q:focus{border-color:var(--acc)}
+.meta{color:var(--mute);font-size:12px;white-space:nowrap}
+.jump{max-width:1200px;margin:0 auto;padding:0 18px 10px;display:flex;gap:6px;flex-wrap:wrap}
+.jump a{font-size:12px;color:var(--mute);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.jump a:hover{color:var(--text);border-color:var(--acc)}
+main{max-width:1200px;margin:0 auto;padding:12px 18px 40px}
+section{margin:18px 0 26px}
+.mh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.mh h2{font-size:16px;margin:0}
+.mh .sub{color:var(--mute);font-size:12.5px}
+.mh code{color:var(--mute);font-size:12px;background:var(--panel);padding:1px 6px;border-radius:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--acc);transform:translateY(-1px)}
+.top{display:flex;align-items:center;gap:8px}
+.top a.main{color:var(--text);text-decoration:none;font-weight:600;flex:1}
+.top a.main:hover{color:var(--acc)}
+.desc{color:var(--mute);font-size:13px}
+.links{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.links a{font-size:12px;color:var(--acc);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:2px 8px}
+.links a:hover{border-color:var(--acc)}
+.url{font-size:11.5px;color:#64748b;word-break:break-all}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--unk);flex:none;box-shadow:0 0 0 3px rgba(107,114,128,.15)}
+.dot.up{background:var(--up);box-shadow:0 0 0 3px rgba(34,197,94,.15)}
+.dot.down{background:var(--down);box-shadow:0 0 0 3px rgba(239,68,68,.18)}
+.other{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:12.5px;color:var(--mute)}
+.chip b{color:var(--text);font-weight:550}
+.chip .dot{width:7px;height:7px}
+.empty{color:var(--mute);font-size:13px;font-style:italic}
+.hidden{display:none!important}
+footer{max-width:1200px;margin:0 auto;padding:0 18px 30px;color:var(--mute);font-size:12px}
+@media (max-width:560px){.grid{grid-template-columns:1fr}.meta{width:100%}h1 span{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Homelab links <span>Tailscale + LAN</span></h1>
+    <input id="q" type="search" placeholder="Filter services…  ( / to focus, Enter opens first )" autocomplete="off">
+    <div class="meta" id="meta">checking…</div>
+  </div>
+  <nav class="jump" id="jump"></nav>
+</header>
+<main id="main"></main>
+<footer>Status is checked by the Pi every 60 s. Green = answering (login pages count), red = no answer, grey = not checked. Source: lab/homelab-links on Forgejo.</footer>
+<script>window.LINKS_DATA = {"title": "Homelab links", "machines": [{"id": "pi", "name": "Raspberry Pi 4", "about": "Home hub: Git, dashboards, projector control", "services": [{"name": "Homelab links", "desc": "Full service index with live status (runs on the Pi)", "url": "http://raspberrypi.tail6774d5.ts.net:8088/"}, {"name": "Forgejo", "desc": "Private Git server (Tailscale only)", "url": "https://raspberrypi.tail6774d5.ts.net:8443/", "check": "https://raspberrypi.tail6774d5.ts.net:8443/"}, {"name": "TODO repo", "desc": "lab/todo on Forgejo (JSON-canonical TODO lists)", "url": "https://raspberrypi.tail6774d5.ts.net:8443/lab/todo", "check": "https://raspberrypi.tail6774d5.ts.net:8443/lab/todo"}, {"name": "TODO board", "desc": "Read-only view of lab/todo", "url": "http://raspberrypi.tail6774d5.ts.net:8097/", "extra": [{"label": "Projector view", "url": "http://raspberrypi.tail6774d5.ts.net:8097/projector"}]}, {"name": "Livefeed / Grok panel", "desc": "Live activity dashboard (general · canlı akış)", "url": "http://raspberrypi.tail6774d5.ts.net:8090/"}, {"name": "Netmap", "desc": "Live home network map", "url": "http://raspberrypi.tail6774d5.ts.net:8080/"}, {"name": "ProjectorCast panel", "desc": "Projector source hub (projector-ctl)", "url": "http://raspberrypi.tail6774d5.ts.net:8095/"}, {"name": "KAAN TF-X", "desc": "Flight-test simulator (tai/kaan)", "url": "http://raspberrypi.tail6774d5.ts.net:8100/"}], "other": [], "host": "raspberrypi.tail6774d5.ts.net"}, {"id": "a1", "name": "ekrem-a1 (Oracle)", "about": "File host, Lenovo panel, CLI hub", "services": [{"name": "Lenovo USB panel", "desc": "Lenovo A6020 control panel (password protected)", "url": "https://ekrem-a1.tail6774d5.ts.net/usb/", "check": "https://ekrem-a1.tail6774d5.ts.net/usb/"}], "other": [], "host": "ekrem-a1.tail6774d5.ts.net"}, {"id": "yoga", "name": "Yoga Slim 7 (Windows)", "about": "Main laptop", "services": [{"name": "NI Web-based Monitoring", "desc": "National Instruments system web server", "url": "http://3kr3m-yoga-slim7.tail6774d5.ts.net:3582/"}], "other": [], "host": "3kr3m-yoga-slim7.tail6774d5.ts.net"}, {"id": "web", "name": "Public web", "about": "Sites on GitHub Pages", "services": [{"name": "ekremcaglar.github.io", "desc": "Project index", "url": "https://ekremcaglar.github.io/", "check": "https://ekremcaglar.github.io/"}, {"name": "Folio", "desc": "Offline LLM chat, Markdown/TeX to Word", "url": "https://ekremcaglar.github.io/folio/", "check": "https://ekremcaglar.github.io/folio/"}], "other": []}]};</script>
+<script>
+const onLan = /^192\.168\./.test(location.hostname);
+let data, status = {};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function dotCls(check){ if(!check) return ""; const r = status[check]; return r ? (r.up ? "up" : "down") : ""; }
+function dotTitle(check){ const r = status[check]; if(!check) return "not checked"; if(!r) return "pending"; return r.up ? `up${r.code? " · HTTP "+r.code:""}${r.ms!=null? " · "+r.ms+" ms":""}` : `down${r.err? " · "+r.err:""}${r.code? " · HTTP "+r.code:""}`; }
+function render(){
+  const main = document.getElementById("main"), jump = document.getElementById("jump");
+  main.innerHTML = ""; jump.innerHTML = "";
+  for (const m of data.machines){
+    jump.insertAdjacentHTML("beforeend", `<a href="#m-${m.id}">${esc(m.name)}</a>`);
+    const sec = document.createElement("section"); sec.id = "m-"+m.id;
+    sec.innerHTML = `<div class="mh"><h2>${esc(m.name)}</h2><span class="sub">${esc(m.about||"")}</span>${m.host?`<code>${esc(m.host)}</code>`:""}${m.lan?`<code>${esc(m.lan)}</code>`:""}</div>`;
+    const grid = document.createElement("div"); grid.className = "grid";
+    for (const s of m.services){
+      const primary = (onLan && s.lan_url) ? s.lan_url : s.url;
+      const links = [];
+      if (s.lan_url && !onLan) links.push(`<a href="${esc(s.lan_url)}" target="_blank" rel="noopener">LAN</a>`);
+      if (s.lan_url && onLan) links.push(`<a href="${esc(s.url)}" target="_blank" rel="noopener">Tailscale</a>`);
+      for (const x of s.extra||[]) links.push(`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a>`);
+      const card = document.createElement("div"); card.className = "card svc";
+      card.dataset.text = [s.name, s.desc, m.name, s.url, s.lan_url].join(" ").toLowerCase();
+      card.innerHTML = `<div class="top"><span class="dot ${dotCls(s.check)}" title="${esc(dotTitle(s.check))}"></span><a class="main" href="${esc(primary)}" target="_blank" rel="noopener">${esc(s.name)}</a></div>
+        <div class="desc">${esc(s.desc)}</div><div class="url">${esc(primary.replace(/^https?:\/\//,""))}</div>${links.length?`<div class="links">${links.join("")}</div>`:""}`;
+      grid.appendChild(card);
+    }
+    if (!m.services.length) grid.innerHTML = `<div class="empty">No web services on this machine.</div>`;
+    sec.appendChild(grid);
+    if ((m.other||[]).length){
+      const o = document.createElement("div"); o.className = "other";
+      for (const x of m.other){
+        const chip = document.createElement("div"); chip.className = "chip svc";
+        chip.dataset.text = [x.name, x.addr, m.name].join(" ").toLowerCase();
+        chip.innerHTML = `${x.check?`<span class="dot ${dotCls(x.check)}" title="${esc(dotTitle(x.check))}"></span>`:""}<b>${esc(x.name)}</b> ${esc(x.addr)}`;
+        o.appendChild(chip);
+      }
+      sec.appendChild(o);
+    }
+    main.appendChild(sec);
+  }
+  filter();
+}
+function filter(){
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  for (const sec of document.querySelectorAll("main section")){
+    let any = false;
+    for (const el of sec.querySelectorAll(".svc")){ const hit = !q || q.split(/\s+/).every(w => el.dataset.text.includes(w)); el.classList.toggle("hidden", !hit); any ||= hit; }
+    const e = sec.querySelector(".empty"); if (e) e.classList.toggle("hidden", !!q);
+    sec.classList.toggle("hidden", !!q && !any);
+  }
+}
+async function loadStatus(){
+  try{
+    const r = await fetch("api/status", {cache:"no-store"}); const j = await r.json();
+    status = j.results || {};
+    // Pi down for an https link (e.g. Pi DNS issue)? ask the browser too.
+    await Promise.all(Object.entries(status).filter(([k,v]) => !v.up && k.startsWith("https://")).map(async ([k,v]) => {
+      const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 4000);
+      try { await fetch(k, {mode:"no-cors", cache:"no-store", signal:ctl.signal}); status[k] = {up:true, note:"reachable from browser"}; } catch(e){} finally { clearTimeout(t); }
+    }));
+    const vals = Object.values(status), up = vals.filter(v=>v.up).length;
+    document.getElementById("meta").textContent = j.checked ? `${up}/${vals.length} up · ${new Date(j.checked*1000).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}` : "first check running…";
+  }catch(e){ document.getElementById("meta").textContent = "status unavailable"; }
+  render();
+}
+async function clientStatus(){
+  // Public copy: no server; probe https links from the browser (opaque no-cors fetch).
+  const items = data.machines.flatMap(m => m.services).filter(s => s.check && s.check.startsWith("https://"));
+  await Promise.all(items.map(async s => {
+    const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 5000), t0 = Date.now();
+    try { await fetch(s.check, {mode:"no-cors", cache:"no-store", signal:ctl.signal}); status[s.check] = {up:true, ms:Date.now()-t0}; }
+    catch(e){ status[s.check] = {up:false, err:"unreachable from this network"}; }
+    finally { clearTimeout(t); }
+  }));
+  const vals = Object.values(status);
+  document.getElementById("meta").textContent = `${vals.filter(v=>v.up).length}/${vals.length} reachable from here`;
+  render();
+}
+(async () => {
+  const pub = !!window.LINKS_DATA;
+  data = pub ? window.LINKS_DATA : await (await fetch("services.json", {cache:"no-store"})).json();
+  if (pub){ document.querySelector("footer").textContent = "Tailscale links open only for devices on the tailnet. Dots show what is reachable from this browser. The full version runs on the Raspberry Pi."; render(); clientStatus(); setInterval(clientStatus, 60000); }
+  else { render(); loadStatus(); setInterval(loadStatus, 30000); }
+  const q = document.getElementById("q");
+  q.addEventListener("input", filter);
+  q.addEventListener("keydown", e => { if (e.key === "Enter"){ const a = document.querySelector(".card.svc:not(.hidden) a.main"); if (a) window.open(a.href, "_blank"); } if (e.key === "Escape"){ q.value=""; filter(); } });
+  document.addEventListener("keydown", e => { if (e.key === "/" && document.activeElement !== q){ e.preventDefault(); q.focus(); } });
+})();
+</script>
+</body>
+</html>
